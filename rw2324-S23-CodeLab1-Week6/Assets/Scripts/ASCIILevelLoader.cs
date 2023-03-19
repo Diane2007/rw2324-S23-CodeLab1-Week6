@@ -30,6 +30,7 @@ public class ASCIILevelLoader : MonoBehaviour
         {
             currentLevel = value;
             GameManager.instance.isAnswered = false;
+            GameManager.instance.isCorrect = false;
             hasPlayed = false;
             LoadLevel();
         }
@@ -66,6 +67,7 @@ public class ASCIILevelLoader : MonoBehaviour
         string testAnswer = fileContents[fileContents.Length - 1];
         //store testAnswer in GameManager
         GameManager.instance.correctAnswer = testAnswer;
+        Debug.Log("Test answer: " + testAnswer);
 
         //go through each string in the array
         for (int note = 0; note < fileContents.Length - 1; note++)
@@ -126,7 +128,6 @@ public class ASCIILevelLoader : MonoBehaviour
                 thumbsUp.SetActive(false);  //disable thumbs up sprite
                 CurrentLevel++;             //go to next level
                 timer = 0;                  //reset timer
-                GameManager.instance.isCorrect = false;
             }
         }
     }

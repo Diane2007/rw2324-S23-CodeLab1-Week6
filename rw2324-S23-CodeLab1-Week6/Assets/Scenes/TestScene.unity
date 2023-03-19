@@ -532,7 +532,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69461dee4a13b402bb2bf42a4184ae98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnswer: []
+  playerAnswer: 
+  correctAnswer: 
+  isAnswered: 0
+  isCorrect: 0
 --- !u!114 &46290498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,6 +737,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: b4
       objectReference: {fileID: 0}
+    - target: {fileID: 3433242839065657406, guid: a6b2847a08cc646b29a7c26eac038f8d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 22db8e8add6fa48fdb869995718f988a, type: 3}
     - target: {fileID: 3433242839065657406, guid: a6b2847a08cc646b29a7c26eac038f8d, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -937,6 +944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputAnswer: 0
+  answer: 
 --- !u!82 &279995358 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 3433242839065657406, guid: a6b2847a08cc646b29a7c26eac038f8d, type: 3}
@@ -1090,6 +1098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputAnswer: 1
+  answer: 
 --- !u!1 &370366065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,6 +1416,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 385908929660662635, guid: dff8cc2790a0645159bdc18f66795669, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e68fa6e2a6f28458eb21de0ea48de26b, type: 3}
+    - target: {fileID: 385908929660662635, guid: dff8cc2790a0645159bdc18f66795669, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
@@ -1702,6 +1715,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 428799861}
     m_Modifications:
+    - target: {fileID: 3721450582800356, guid: 9462963260e5f4b989c2be4865abfc80, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 94e4e8a9fff2e465eb6ba387026332f3, type: 3}
     - target: {fileID: 3721450582800356, guid: 9462963260e5f4b989c2be4865abfc80, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -2008,6 +2025,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: g4
       objectReference: {fileID: 0}
+    - target: {fileID: 3418266795661611699, guid: 17b479ca918db427d84664673674fa72, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 32adabe4e328e4387a4d99dafaa967b6, type: 3}
     - target: {fileID: 3418266795661611699, guid: 17b479ca918db427d84664673674fa72, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -2489,6 +2510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputAnswer: 3
+  answer: 
 --- !u!82 &1872102640 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 385908929660662635, guid: dff8cc2790a0645159bdc18f66795669, type: 3}
@@ -2642,6 +2664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputAnswer: 2
+  answer: 
 --- !u!1001 &1903125607
 PrefabInstance:
   m_ObjectHideFlags: 0

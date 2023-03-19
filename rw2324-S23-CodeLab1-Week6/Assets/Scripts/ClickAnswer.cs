@@ -29,23 +29,20 @@ public class ClickAnswer : MonoBehaviour
                 break;
             case NoteAnswer.Cmaj3:  //button is for the answer Cmaj3
                 GameManager.instance.playerAnswer = "Cmaj3";
-                // GameManager.instance.playerAnswer.Add("C");
-                // GameManager.instance.playerAnswer.Add("E");
+                GameManager.instance.isAnswered = true;
+                Debug.Log("Clicked, player answer is: " + GameManager.instance.playerAnswer);
                 Debug.Log("Player answer is Cmaj3");
                 break;
             case NoteAnswer.Cmaj:   //button is for the answer Cmaj
                 GameManager.instance.playerAnswer = "Cmaj";
-                // GameManager.instance.playerAnswer.Add("C");
-                // GameManager.instance.playerAnswer.Add("E");
-                // GameManager.instance.playerAnswer.Add("G");
+                GameManager.instance.isAnswered = true;
+                Debug.Log("Clicked, player answer is: " + GameManager.instance.playerAnswer);
                 Debug.Log("Player answer is Cmaj");
                 break;
             case NoteAnswer.Cmaj7:  //button is for the answer Cmaj7
                 GameManager.instance.playerAnswer = "Cmaj7";
-                // GameManager.instance.playerAnswer.Add("C");
-                // GameManager.instance.playerAnswer.Add("E");
-                // GameManager.instance.playerAnswer.Add("G");
-                // GameManager.instance.playerAnswer.Add("B");
+                GameManager.instance.isAnswered = true;
+                Debug.Log("Clicked, player answer is: " + GameManager.instance.playerAnswer);
                 Debug.Log("Player answer is Cmaj7");
                 break;
             default:
