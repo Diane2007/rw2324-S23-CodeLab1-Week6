@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class ASCIILevelLoader : MonoBehaviour
 {
@@ -9,8 +10,9 @@ public class ASCIILevelLoader : MonoBehaviour
     public AudioSource
         noteC, noteCSh, noteD, noteDSh, noteE, noteF, noteFSh, noteG, noteGSh, noteA, noteASh, noteB, noteBSh;
 
-    //the thumbs up sprite
+    //init the thumbs sprite
     public GameObject thumbsUp;
+    public GameObject thumbsDown;
     
     // //bools to check if anything is playing, or if the sound has played
     // bool isPlaying = false;
@@ -18,6 +20,7 @@ public class ASCIILevelLoader : MonoBehaviour
     
     //init a timer
     float timer = 0f;
+    float wrongAnswerTimer = 0f;    //just in case the timer is already running and we need to count another timer
     float waitTime = 2f;
     float testTime = 2f;
 
@@ -29,9 +32,14 @@ public class ASCIILevelLoader : MonoBehaviour
         set
         {
             currentLevel = value;
+            
+            //reset the answer bools
             GameManager.instance.isAnswered = false;
             GameManager.instance.isCorrect = false;
+            GameManager.instance.isWrong = false;
             hasPlayed = false;
+            
+            //load level with ASCII
             LoadLevel();
         }
     }
@@ -45,6 +53,8 @@ public class ASCIILevelLoader : MonoBehaviour
     {
         //don't show the thumbs up at the beginning
         thumbsUp.SetActive(false);
+        thumbsDown.SetActive(false);
+        
         
         //define file path
         FILE_PATH = Application.dataPath + FILE_DIR + FILE_NAME;
@@ -67,14 +77,14 @@ public class ASCIILevelLoader : MonoBehaviour
         string testAnswer = fileContents[fileContents.Length - 1];
         //store testAnswer in GameManager
         GameManager.instance.correctAnswer = testAnswer;
-        Debug.Log("Test answer: " + testAnswer);
+        // Debug.Log("Test answer: " + testAnswer);
 
         //go through each string in the array
         for (int note = 0; note < fileContents.Length - 1; note++)
         {
             //put each string into a box called noteName
             string noteName = fileContents[note];
-            Debug.Log("the current note is: " + noteName);
+            // Debug.Log("the current note is: " + noteName);
             
             // //add each played note into the list of testAnswer
             // testAnswer.Add(noteName);
@@ -85,19 +95,19 @@ public class ASCIILevelLoader : MonoBehaviour
             {
                 case "C":   //is the note C?
                     noteC.PlayOneShot(noteC.clip);      //play noteC
-                    Debug.Log("Now playing: C");
+                    // Debug.Log("Now playing: C");
                     break;
                 case "E":
                     noteE.PlayOneShot(noteE.clip);
-                    Debug.Log("Now playing: E");
+                    // Debug.Log("Now playing: E");
                     break;
                 case "G":
                     noteG.PlayOneShot(noteG.clip);
-                    Debug.Log("Now playing: G");
+                    // Debug.Log("Now playing: G");
                     break;
                 case "B":
                     noteB.PlayOneShot(noteB.clip);
-                    Debug.Log("Now playing: B");
+                    // Debug.Log("Now playing: B");
                     break;
                 default:
                     Debug.Log("No sound played!");
@@ -107,11 +117,9 @@ public class ASCIILevelLoader : MonoBehaviour
             
             //test sound has played turns to true
             hasPlayed = true;
-            Debug.Log("The last item of the file content is: " + fileContents[fileContents.Length - 1]);
-            Debug.Log("Player's answer is: " + GameManager.instance.playerAnswer);
-
+            // Debug.Log("The last item of the file content is: " + fileContents[fileContents.Length - 1]);
+            // Debug.Log("Player's answer is: " + GameManager.instance.playerAnswer);
         }
-
     }
 
     void Update()
@@ -119,16 +127,52 @@ public class ASCIILevelLoader : MonoBehaviour
         //if we have a correct answer
         if (GameManager.instance.isCorrect == true)
         {
+            // //if a thumbs down is showing, deactivate it
+            // if (thumbsDown)
+            // {
+            //     thumbsDown.SetActive(false);
+            // }
+            //
+            //show thumbs up
             thumbsUp.SetActive(true);
             
             //start timer
             timer += Time.deltaTime;
             if (timer > waitTime)   //if timer is more than waitTime
             {
-                thumbsUp.SetActive(false);  //disable thumbs up sprite
-                CurrentLevel++;             //go to next level
                 timer = 0;                  //reset timer
+                thumbsUp.SetActive(false);  //disable thumbs up sprite
+                
+                //if the level number is less than 4, go to the next level
+                if (currentLevel < 3)
+                {
+                    CurrentLevel++;
+                }
+                //else, go to end scene
+                else
+                {
+                    SceneManager.LoadScene("EndScene");
+                }
             }
+        }
+        
+        //if we have a wrong answer
+        if (GameManager.instance.isWrong == true)
+        {
+            //show thumbs down
+            thumbsDown.SetActive(true);
+            
+            //start timer
+            wrongAnswerTimer += Time.deltaTime;
+            
+            //after waitTime is up, disable thumbsDown and reset wrongAnswerTimer
+            if (wrongAnswerTimer > waitTime)
+            {
+                wrongAnswerTimer = 0;
+                thumbsDown.SetActive(false);
+                GameManager.instance.isWrong = false;
+            }
+            
         }
     }
 }

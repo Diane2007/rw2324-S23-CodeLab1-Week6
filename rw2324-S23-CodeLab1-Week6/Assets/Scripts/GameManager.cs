@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     //a bool to help check if the answers
     public bool isAnswered = false;
     public bool isCorrect = false;
+    public bool isWrong = false;
     
     //public List<string> playerAnswer;
 
@@ -39,6 +40,11 @@ public class GameManager : MonoBehaviour
             {
                 isCorrect = true;
                 Debug.Log("Correct!");
+            }
+            else
+            {
+                isWrong = true;
+                Debug.Log("Wrong!");
             }
         }
 
