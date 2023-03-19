@@ -1,15 +1,27 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
+    //create a singleton and attach it to GameManagerHolder
+    public static GameManager instance;
 
-    // //add piano note audio to inspector
-    // public AudioSource
-    //     noteC, noteCSh, noteD, noteDSh, noteE, noteF, noteFSh, noteG, noteGSh, noteA, noteASh, noteB, noteBSh;
+    void Awake()
+    {
+        if (!instance)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
+    //create a list for player's input answer
+    public List<string> playerAnswer;
 
     //
     // void Update()

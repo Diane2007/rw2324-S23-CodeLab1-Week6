@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
@@ -12,30 +13,9 @@ public class ASCIILevelLoader : MonoBehaviour
     public AudioSource
         noteBb, noteEb;
     
-    //making the script a singleton and attach it to GameManagerHolder
-    public static ASCIILevelLoader instance;
-    void Awake()
-    {
-        if (instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            instance = this;
-        }
-
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    //set a timer
-    float timer = 0f;
-    public float testPlayTime = 2;
-    public float testWaitTime = 1;
-    
-    //bools to check if anything is playing, or if the sound has played
-    bool isPlaying = false;
-    bool hasPlayed = false;
+    // //bools to check if anything is playing, or if the sound has played
+    // bool isPlaying = false;
+    public bool hasPlayed = false;
 
     //make a property to store the current level
     int currentLevel = 0;
@@ -62,46 +42,34 @@ public class ASCIILevelLoader : MonoBehaviour
         LoadLevel();
     }
 
-    // public void PlayTestSound(string noteX)
-    // {
-    //     
-    // }
-    //
-    // void WaitTest()
-    // {
-    //     if (!isPlaying && !hasPlayed)
-    //     {
-    //         timer += Time.deltaTime;
-    //         if (timer > testPlayTime)
-    //         {
-    //             PlayTestSound();
-    //             timer = 0;
-    //             hasPlayed = true;
-    //         }
-    //     }
-    // }
-
     void LoadLevel()
     {
+        hasPlayed = false;
         //customize each level name and replace the LevelNum.txt file name
         string newPath = FILE_PATH.Replace("Num", currentLevel + "");
         
         //read all lines from the txt file and store it in fileContents
         string[] fileContents = File.ReadAllLines(newPath);
+        
+        //create a list to store the current level's test answers
+        List<string> testAnswer = new List<string>();   //DONT FORGET TO CLEAR THE LIST
 
         //go through each string in the array
         for (int note = 0; note < fileContents.Length; note++)
         {
-            //put each string
+            //put each string into a box called noteName
             string noteName = fileContents[note];
-            Debug.Log(noteName);
+            Debug.Log("the current note is: " + noteName);
+            
+            //add each played note into the list of testAnswer
+            testAnswer.Add(noteName);
 
             //play respective note sound
             switch (noteName)
             {
                 case "C":   //is the note C?
                     noteC.PlayOneShot(noteC.clip);      //play noteC
-                    Debug.Log("Now playing: " + noteC.clip.ToString());
+                    Debug.Log("Now playing: C");
                     break;
                 case "D":   //is the note D?
                     noteD.PlayOneShot(noteD.clip);
@@ -123,11 +91,25 @@ public class ASCIILevelLoader : MonoBehaviour
                     noteG.PlayOneShot(noteG.clip);
                     Debug.Log("Now playing: G");
                     break;
+                case "Bb":
+                    noteASh.PlayOneShot(noteASh.clip);
+                    Debug.Log("Now playing: Bb");
+                    break;
                 default:
                     Debug.Log("No sound played!");
                     break;
                     
             }
+
+            hasPlayed = true;
+            
+            //if player's answer is the same as test answer
+            //the level is completed
+            if (GameManager.instance.playerAnswer == testAnswer)
+            {
+                
+            }
+            
         }
 
     }
