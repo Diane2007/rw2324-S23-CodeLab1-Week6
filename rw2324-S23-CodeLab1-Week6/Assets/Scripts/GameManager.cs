@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     //create a singleton and attach it to GameManagerHolder
     public static GameManager instance;
+    
+    
 
     void Awake()
     {

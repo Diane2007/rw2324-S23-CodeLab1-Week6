@@ -20,7 +20,6 @@ public class ASCIILevelLoader : MonoBehaviour
     
     //init a timer
     float timer = 0f;
-    float wrongAnswerTimer = 0f;    //just in case the timer is already running and we need to count another timer
     float waitTime = 2f;
     float testTime = 2f;
 
@@ -127,13 +126,6 @@ public class ASCIILevelLoader : MonoBehaviour
         //if we have a correct answer
         if (GameManager.instance.isCorrect == true)
         {
-            // //if a thumbs down is showing, deactivate it
-            // if (thumbsDown)
-            // {
-            //     thumbsDown.SetActive(false);
-            // }
-            //
-            //show thumbs up
             thumbsUp.SetActive(true);
             
             //start timer
@@ -163,16 +155,26 @@ public class ASCIILevelLoader : MonoBehaviour
             thumbsDown.SetActive(true);
             
             //start timer
-            wrongAnswerTimer += Time.deltaTime;
+            timer += Time.deltaTime;
             
-            //after waitTime is up, disable thumbsDown and reset wrongAnswerTimer
-            if (wrongAnswerTimer > waitTime)
+            //after waitTime is up, disable thumbsDown and reset timer
+            if (timer > waitTime)
             {
-                wrongAnswerTimer = 0;
+                timer = 0;
                 thumbsDown.SetActive(false);
-                GameManager.instance.isWrong = false;
+                
+                //if the level number is less than 4, go to the next level
+                if (currentLevel < 3)
+                {
+                    CurrentLevel++;
+                }
+                //else, go to end scene
+                else
+                {
+                    SceneManager.LoadScene("EndScene");
+                }
             }
-            
+
         }
     }
 }
