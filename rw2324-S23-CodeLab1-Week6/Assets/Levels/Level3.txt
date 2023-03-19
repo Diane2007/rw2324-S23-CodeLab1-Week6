@@ -2,3 +2,4 @@ C
 E
 G
 B
+Cmaj7

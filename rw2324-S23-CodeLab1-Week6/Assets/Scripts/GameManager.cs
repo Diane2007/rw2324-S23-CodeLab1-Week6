@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,10 +21,28 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    //create a list for player's input answer
-    public List<string> playerAnswer;
+    //create a container for player's input answer
+    [FormerlySerializedAs("answer")] public string playerAnswer;
+    public string correctAnswer;
+    
+    //a bool to help check if the answers
+    public bool isAnswered = false;
+    public bool isCorrect = false;
+    
+    //public List<string> playerAnswer;
 
-    //
+    void Update()
+    {
+        if (isAnswered == true)
+        {
+            if (correctAnswer == playerAnswer)
+            {
+                isCorrect = true;
+                Debug.Log("Correct!");
+            }
+        }
+
+    }
     // void Update()
     // {
     //     WaitTest();

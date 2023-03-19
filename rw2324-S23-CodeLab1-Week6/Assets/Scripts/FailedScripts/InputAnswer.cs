@@ -5,21 +5,7 @@ using UnityEngine;
 
 public class InputAnswer : MonoBehaviour
 {
-    //make InputAnswer a singleton and attach it to Piano_NoSound
-    public static InputAnswer instance;
-    void Awake()
-    {
-        if (!instance)
-        {
-            DontDestroyOnLoad(gameObject);
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
+    /*
     //create the drop down menus
     public enum ClickAnswer
     {
@@ -36,6 +22,9 @@ public class InputAnswer : MonoBehaviour
         //if the left key is pressed and the test sound has played
         if (Input.GetMouseButtonDown(0) && GameManager.instance.GetComponent<ASCIILevelLoader>().hasPlayed)
         {
+            //the sprite turns red
+            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            
             switch (keyName)
             {
                 case ClickAnswer.C:
@@ -83,4 +72,5 @@ public class InputAnswer : MonoBehaviour
             }
         }
     }
+    */
 }
