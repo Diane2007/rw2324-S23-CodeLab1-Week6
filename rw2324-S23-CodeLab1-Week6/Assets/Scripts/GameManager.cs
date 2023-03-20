@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-        
+
     //create a box for scores, making it a property
     int score = 0;
     //bools to make sure ChangeScore() only calls once
@@ -77,8 +78,8 @@ public class GameManager : MonoBehaviour
                 // Debug.Log("score changed bool is: " + scoreChanged.ToString() + " isAnswered is: " + isAnswered.ToString());
                 isCorrect = true;   //player gives a wrong answer
 
-                    Score++;    //score +1 when correct
-                    scoreChanged = true;
+                Score++;    //score +1 when correct
+                scoreChanged = true;
             }
             else
             {
@@ -90,9 +91,7 @@ public class GameManager : MonoBehaviour
                 
                 scoreChanged = true;
             }
-            
-            //reset isAnswered to false
-            isAnswered = false;
+
         }
 
     }

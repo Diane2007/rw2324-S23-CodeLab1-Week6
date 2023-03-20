@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.Assertions.Must;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ASCIILevelLoader : MonoBehaviour
 {
@@ -14,6 +16,9 @@ public class ASCIILevelLoader : MonoBehaviour
     public GameObject thumbsUp;
     public GameObject thumbsDown;
     
+    //init the buttons
+    public Button cButton, cMaj3Button, cMajButton, cMaj7Button;
+
     // //bools to check if anything is playing, or if the sound has played
     // bool isPlaying = false;
     public bool hasPlayed = false;
@@ -64,6 +69,12 @@ public class ASCIILevelLoader : MonoBehaviour
     {
         //when start level, test sound has not played
         hasPlayed = false;
+        
+        //enable all buttons
+        EnableButton(cButton);
+        EnableButton(cMaj3Button);
+        EnableButton(cMajButton);
+        EnableButton(cMaj7Button);
         
         //customize each level name and replace the LevelNum.txt file name
         string newPath = FILE_PATH.Replace("Num", currentLevel + "");
@@ -128,6 +139,12 @@ public class ASCIILevelLoader : MonoBehaviour
         {
             thumbsUp.SetActive(true);
             
+            //disable all buttons
+            DisableButton(cButton);
+            DisableButton(cMaj3Button);
+            DisableButton(cMajButton);
+            DisableButton(cMaj7Button);
+            
             //start timer
             timer += Time.deltaTime;
             if (timer > waitTime)   //if timer is more than waitTime
@@ -154,6 +171,12 @@ public class ASCIILevelLoader : MonoBehaviour
             //show thumbs down
             thumbsDown.SetActive(true);
             
+            //disable all buttons
+            DisableButton(cButton);
+            DisableButton(cMaj3Button);
+            DisableButton(cMajButton);
+            DisableButton(cMaj7Button);
+            
             //start timer
             timer += Time.deltaTime;
             
@@ -176,5 +199,15 @@ public class ASCIILevelLoader : MonoBehaviour
             }
 
         }
+    }
+
+    public void DisableButton(Button button)
+    {
+        button.interactable = false;
+    }
+
+    public void EnableButton(Button button)
+    {
+        button.interactable = true;
     }
 }

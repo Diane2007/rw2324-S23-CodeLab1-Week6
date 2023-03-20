@@ -565,6 +565,10 @@ MonoBehaviour:
   noteBSh: {fileID: 1903125609}
   thumbsUp: {fileID: 370366065}
   thumbsDown: {fileID: 118066109}
+  cButton: {fileID: 236027973}
+  cMaj3Button: {fileID: 327317222}
+  cMajButton: {fileID: 1892432631}
+  cMaj7Button: {fileID: 1732896329}
   hasPlayed: 0
 --- !u!1 &118066109
 GameObject:
@@ -1013,7 +1017,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputAnswer: 0
-  answer: 
 --- !u!82 &279995358 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 3433242839065657406, guid: a6b2847a08cc646b29a7c26eac038f8d, type: 3}
@@ -1167,7 +1170,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputAnswer: 1
-  answer: 
 --- !u!1 &370366065
 GameObject:
   m_ObjectHideFlags: 0
@@ -2728,7 +2730,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputAnswer: 3
-  answer: 
 --- !u!82 &1872102640 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 385908929660662635, guid: dff8cc2790a0645159bdc18f66795669, type: 3}
@@ -2882,7 +2883,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputAnswer: 2
-  answer: 
 --- !u!1001 &1903125607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3101,6 +3101,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3548297726577417780, guid: 2335ef5aea3cf495890e3e34cb92cc0c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4030030856633268547, guid: 2335ef5aea3cf495890e3e34cb92cc0c, type: 3}
       propertyPath: m_Name
       value: Piano_NoSound
