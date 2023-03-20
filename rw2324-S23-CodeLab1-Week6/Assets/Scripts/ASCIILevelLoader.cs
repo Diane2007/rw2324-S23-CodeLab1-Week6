@@ -59,7 +59,6 @@ public class ASCIILevelLoader : MonoBehaviour
         thumbsUp.SetActive(false);
         thumbsDown.SetActive(false);
         
-        
         //define file path
         FILE_PATH = Application.dataPath + FILE_DIR + FILE_NAME;
         LoadLevel();
@@ -201,12 +200,12 @@ public class ASCIILevelLoader : MonoBehaviour
         }
     }
 
-    public void DisableButton(Button button)
+    void DisableButton(Button button)
     {
         button.interactable = false;
     }
 
-    public void EnableButton(Button button)
+    void EnableButton(Button button)
     {
         button.interactable = true;
     }
