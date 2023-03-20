@@ -13,8 +13,6 @@ public class ClickAnswer : MonoBehaviour
     //default choice is C
     public NoteAnswer inputAnswer = NoteAnswer.C;
 
-    //store each button's answer
-    public string answer;
     public void PlayerAnswer()
     {
         switch (inputAnswer)
@@ -22,28 +20,19 @@ public class ClickAnswer : MonoBehaviour
             case NoteAnswer.C:      //button is for the answer C
                 GameManager.instance.playerAnswer = "C";
                 GameManager.instance.isAnswered = true;
-                Debug.Log("Clicked, player answer is: " + GameManager.instance.playerAnswer);
-                //answer = "C";
-                //GameManager.instance.playerAnswer.Add("C");
-                Debug.Log("Player answer is C");
+                //Debug.Log("Clicked, player answer is: " + GameManager.instance.playerAnswer);
                 break;
             case NoteAnswer.Cmaj3:  //button is for the answer Cmaj3
                 GameManager.instance.playerAnswer = "Cmaj3";
                 GameManager.instance.isAnswered = true;
-                Debug.Log("Clicked, player answer is: " + GameManager.instance.playerAnswer);
-                Debug.Log("Player answer is Cmaj3");
                 break;
             case NoteAnswer.Cmaj:   //button is for the answer Cmaj
                 GameManager.instance.playerAnswer = "Cmaj";
                 GameManager.instance.isAnswered = true;
-                Debug.Log("Clicked, player answer is: " + GameManager.instance.playerAnswer);
-                Debug.Log("Player answer is Cmaj");
                 break;
             case NoteAnswer.Cmaj7:  //button is for the answer Cmaj7
                 GameManager.instance.playerAnswer = "Cmaj7";
                 GameManager.instance.isAnswered = true;
-                Debug.Log("Clicked, player answer is: " + GameManager.instance.playerAnswer);
-                Debug.Log("Player answer is Cmaj7");
                 break;
             default:
                 Debug.Log("No answer!!!");

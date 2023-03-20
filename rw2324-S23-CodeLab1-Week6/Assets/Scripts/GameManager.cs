@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -32,8 +33,6 @@ public class GameManager : MonoBehaviour
         get { return score; }
         set
         {
-            //reset scoreChanged
-            //scoreChanged = false;
             score = value;
             //whenever score changes, change scoreText
             ChangeScore(); 
@@ -60,76 +59,42 @@ public class GameManager : MonoBehaviour
     {
         scoreText.text = "Your score:" + "\n" + Score;
         isAnswered = false;
-        Debug.Log("After changing score, isAnswered is " + isAnswered);
+        
+        // Debug.Log("Score changed, isAnswered: " + isAnswered);
+        // Debug.Log("Score " + score);
+        
+        //reset scoreChanged
+        scoreChanged = false;
     }
 
     void Update()
     {
-        if (isAnswered == true)
+        if (isAnswered)
         {
             if (correctAnswer == playerAnswer)
             {
-                Debug.Log("Correct!");
-                Debug.Log("score changed bool is: " + scoreChanged.ToString() + " isAnswered is: " + isAnswered.ToString());
-                isCorrect = true;
-                if(scoreChanged == false)
-                {
+                // Debug.Log("Correct!");
+                // Debug.Log("score changed bool is: " + scoreChanged.ToString() + " isAnswered is: " + isAnswered.ToString());
+                isCorrect = true;   //player gives a wrong answer
+
                     Score++;    //score +1 when correct
                     scoreChanged = true;
-                }
             }
             else
             {
-                Debug.Log("Wrong!");
-                Debug.Log("score changed bool is: " + scoreChanged.ToString() + "isAnswered is: " + isAnswered.ToString());
-                isWrong = true;
-                if(scoreChanged == false)
-                {
-                    Score--;    //score -1 when wrong
-                    scoreChanged = true;
-                }
+                // Debug.Log("Wrong!");
+                // Debug.Log("score changed bool is: " + scoreChanged.ToString() + "isAnswered is: " + isAnswered.ToString());
+                
+                isWrong = true;     //player gives a wrong answer
+                Score--;    //score -1 when wrong
+                
+                scoreChanged = true;
             }
-
+            
+            //reset isAnswered to false
+            isAnswered = false;
         }
 
     }
-    // void Update()
-    // {
-    //     WaitTest();
-    //     if (isPlaying)
-    //     {
-    //         timer += Time.deltaTime;
-    //         if (timer > testPlayTime)
-    //         {
-    //             StopTestSound();
-    //             timer = 0;
-    //         }
-    //     }
-    // }
-    //
-    // void StopTestSound()
-    // {
-    //     noteC.Stop();
-    //     isPlaying = false;
-    // }
-    //
-    // void PlayTestSound()
-    // {
-    //     noteC.PlayOneShot(noteC.clip);
-    //     isPlaying = true;
-    // }
-    //
-    // void WaitTest()
-    // {
-    //     if (!isPlaying && !hasPlayed)
-    //     {
-    //         timer += Time.deltaTime;
-    //         if (timer > testWaitTime)
-    //         {
-    //             PlayTestSound();
-    //             timer = 0;
-    //             hasPlayed = true;
-    //         }
-    //     }
-    // }
+
 }
