@@ -70,11 +70,8 @@ public class ASCIILevelLoader : MonoBehaviour
         hasPlayed = false;
         
         //enable all buttons
-        EnableButton(cButton);
-        EnableButton(cMaj3Button);
-        EnableButton(cMajButton);
-        EnableButton(cMaj7Button);
-        
+        EnableButton();
+
         //customize each level name and replace the LevelNum.txt file name
         string newPath = FILE_PATH.Replace("Num", currentLevel + "");
         
@@ -139,10 +136,7 @@ public class ASCIILevelLoader : MonoBehaviour
             thumbsUp.SetActive(true);
             
             //disable all buttons
-            DisableButton(cButton);
-            DisableButton(cMaj3Button);
-            DisableButton(cMajButton);
-            DisableButton(cMaj7Button);
+            DisableButton();
             
             //start timer
             timer += Time.deltaTime;
@@ -171,11 +165,8 @@ public class ASCIILevelLoader : MonoBehaviour
             thumbsDown.SetActive(true);
             
             //disable all buttons
-            DisableButton(cButton);
-            DisableButton(cMaj3Button);
-            DisableButton(cMajButton);
-            DisableButton(cMaj7Button);
-            
+            DisableButton();
+
             //start timer
             timer += Time.deltaTime;
             
@@ -200,13 +191,19 @@ public class ASCIILevelLoader : MonoBehaviour
         }
     }
 
-    void DisableButton(Button button)
+    void DisableButton()
     {
-        button.interactable = false;
+        cButton.interactable = false;
+        cMaj3Button.interactable = false;
+        cMajButton.interactable = false;
+        cMaj7Button.interactable = false;
     }
 
-    void EnableButton(Button button)
+    void EnableButton()
     {
-        button.interactable = true;
+        cButton.interactable = true;
+        cMaj3Button.interactable = true;
+        cMajButton.interactable = true;
+        cMaj7Button.interactable = true;
     }
 }
