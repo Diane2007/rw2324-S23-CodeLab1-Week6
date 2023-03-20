@@ -16,5 +16,4 @@ I used:
 2. Properties;
 3. Singleton;
 4. Arrays and for loops;
-5. more to be added.
 
